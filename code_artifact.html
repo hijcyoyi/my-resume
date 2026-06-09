@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黃翊珍 | 履歷表</title>
+    <style>
+        :root {
+            --cream-bg: #fcf9f5;
+            --soft-white: #ffffff;
+            --deep-brown: #3d352e;
+            --accent-gold: #c5a075;
+            --text-grey: #5c554d;
+            --card-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            --border-color: #eee9e0;
+        }
+        body { background-color: var(--cream-bg); color: var(--deep-brown); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', "PingFang TC", "Microsoft JhengHei", serif; padding: 40px 20px 100px 20px; line-height: 1.8; margin: 0; }
+        .nav-menu { position: fixed; top: 30px; right: 30px; display: flex; gap: 20px; font-family: sans-serif; font-size: 0.85rem; z-index: 1000; font-weight: 500; }
+        .nav-menu a { text-decoration: none; color: var(--text-grey); transition: 0.3s; padding: 5px 10px; border-radius: 20px; }
+        .nav-menu a:hover { color: var(--soft-white); background: var(--accent-gold); }
+        .container { max-width: 850px; margin: 0 auto; }
+        
+        /* 頁首聯絡資訊 */
+        header { text-align: center; margin-bottom: 50px; }
+        h1 { font-size: 2.8rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 5px; color: var(--deep-brown); }
+        .tagline { color: var(--text-grey); letter-spacing: 2px; margin-bottom: 20px; font-weight: bold; font-size: 1.1rem; }
+        .contact-info { margin-bottom: 30px; font-size: 0.95rem; color: var(--text-grey); font-family: sans-serif; display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; }
+        .contact-info span { display: inline-flex; align-items: center; background: var(--soft-white); padding: 5px 15px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); border: 1px solid var(--border-color); }
+        
+        section { margin-bottom: 50px; }
+        h2 { font-size: 1.3rem; margin-bottom: 25px; border-bottom: 2px solid var(--accent-gold); display: inline-block; padding-bottom: 4px; color: var(--deep-brown); font-weight: 700; }
+        .card { background: var(--soft-white); padding: 35px; border-radius: 8px; box-shadow: var(--card-shadow); margin-bottom: 20px; border: 1px solid var(--border-color); }
+        
+        /* 清單與時間軸樣式 */
+        .feature-list { list-style: none; margin: 10px 0; padding: 0; }
+        .feature-list li { margin-bottom: 12px; padding-left: 18px; position: relative; font-size: 1rem; text-align: justify; color: var(--text-grey); }
+        .feature-list li::before { content: "•"; position: absolute; left: 0; color: var(--accent-gold); font-weight: bold; font-size: 1.2rem; }
+        
+        .timeline-item { position: relative; padding-left: 25px; border-left: 2px solid var(--accent-gold); margin-bottom: 30px; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-item::before { content: ""; position: absolute; left: -6px; top: 5px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent-gold); }
+        .timeline-title { font-weight: bold; color: var(--deep-brown); font-size: 1.1rem; }
+        .timeline-subtitle { font-size: 0.95rem; color: var(--text-grey); margin-bottom: 10px; font-family: sans-serif; }
+        
+        /* 證照網格設計 */
+        .img-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
+        .cert-item { background: var(--cream-bg); padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); transition: transform 0.3s; }
+        .cert-item:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .cert-item img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px; }
+        .cert-name { font-size: 0.85rem; text-align: center; margin-top: 10px; font-family: sans-serif; font-weight: 600; color: var(--deep-brown); line-height: 1.3; }
+        .cert-name span { display: block; font-size: 0.75rem; font-weight: normal; color: var(--text-grey); margin-top: 3px; }
+        
+        .about-text { color: var(--text-grey); font-size: 1rem; text-align: justify; line-height: 2; text-indent: 2em; margin-bottom: 15px; }
+
+        /* ======== 編輯器專用 UI 樣式 ======== */
+        .action-btn { padding: 8px 16px; border: none; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: bold; transition: 0.2s; background: var(--cream-bg); color: var(--deep-brown); border: 1px solid #ccc; }
+        .action-btn:hover { background: #eee; }
+        .btn-primary { background: var(--accent-gold); color: white; border: none; }
+        .btn-primary:hover { background: #b08d66; }
+        .btn-danger { background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; }
+        .btn-danger:hover { background: #fecaca; }
+
+        .edit-input { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 1rem; box-sizing: border-box; background: #fff; }
+        .edit-input:focus { outline: 2px solid var(--accent-gold); border-color: transparent; }
+        .edit-textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; resize: vertical; line-height: 1.6; font-size: 1rem; box-sizing: border-box; background: #fff; }
+        .edit-textarea:focus { outline: 2px solid var(--accent-gold); border-color: transparent; }
+        .edit-label { display: block; font-size: 0.85rem; font-weight: bold; color: #666; margin-bottom: 5px; }
+        .edit-block { border: 1px dashed #d1c8bc; padding: 20px; margin-bottom: 15px; background: #fcfbfa; border-radius: 8px; }
+
+        .project-link-btn { display: inline-flex; align-items: center; background: #f0f4f8; color: #0056b3; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; text-decoration: none; font-family: sans-serif; transition: 0.2s; border: 1px solid #dce4ec; }
+        .project-link-btn:hover { background: #e2eaf1; text-decoration: underline; }
+        
+        #admin-controls { display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; background: white; padding: 15px 25px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 2px solid var(--accent-gold); gap: 15px; }
+
+        /* 隱藏的編輯觸發器 (右上角) */
+        #secret-trigger { position: fixed; top: 0; right: 0; width: 60px; height: 60px; z-index: 10001; cursor: default; background: transparent; }
+    </style>
+</head>
+<body>
+
+    <!-- 隱藏觸發器：在右上角雙擊 (double click) 啟動編輯模式 -->
+    <div id="secret-trigger" ondblclick="startEdit()" title=""></div>
+
+    <!-- 浮動控制面板 (平常隱藏，編輯時出現) -->
+    <div id="admin-controls">
+        <!-- JS 動態產生按鈕 -->
+    </div>
+
+    <nav class="nav-menu">
+        <a href="#skills">電腦技能</a>
+        <a href="#experience">學歷與經歷</a>
+        <a href="#about">個人自傳</a>
+        <a href="#certs">專業證照</a>
+        <a href="#works">數位專案</a>
+    </nav>
+
+    <!-- 核心內容渲染區塊 -->
+    <div class="container" id="app"></div>
+
+<!-- ========================================== -->
+<!-- 您的所有履歷資料 (這段 JSON 會跟著您的儲存自動更新) -->
+<!-- ========================================== -->
+<script id="resume-data" type="application/json">
+{
+  "basics": {
+    "name": "黃翊珍",
+    "jobTitle": "應徵職務：工程助理 / 工務行政 / 行政助理",
+    "location": "桃園市八德區新興路",
+    "phone": "0916-921-969",
+    "email": "b0916921969@gmail.com"
+  },
+  "skills": [
+    "辦公軟體應用：熟悉 Microsoft Word、Excel、PowerPoint，具備文件製作、報表整理、資料分析及簡報設計能力。",
+    "Excel 資料分析：熟悉函數運用、資料排序、篩選、樞紐分析及資料整理，可協助行政報表與數據管理作業。",
+    "數據視覺化：具備 Power BI 基礎應用能力，可建立資料分析儀表板與視覺化圖表。",
+    "AI 工具應用：熟悉 Gemini、Google AI Studio、ChatGPT 等生成式 AI 工具，可運用於資訊整理、內容規劃及數位專案實作。",
+    "網站與數位專案實作：具備資訊整合網站規劃、提示詞設計、功能測試及網站部署經驗，能將需求轉化為可展示之數位成果。"
+  ],
+  "experience": [
+    {
+      "title": "電子工程系 學士",
+      "subtitle": "龍華科技大學 | 2023.09 - 2025.06",
+      "bullets": []
+    },
+    {
+      "title": "自由工作者",
+      "subtitle": "個體配送 / 外送平台服務",
+      "bullets": [
+        "因家庭照護需求選擇彈性工作，期間自行安排工作時程、規劃路線並處理突發狀況，培養出良好的自我管理與時間管理能力。"
+      ]
+    },
+    {
+      "title": "電子廠作業員 / 品檢員",
+      "subtitle": "人力派遣",
+      "bullets": [
+        "參與產品組裝、品質檢驗及產線相關作業，快速適應不同工作環境並配合產線需求。"
+      ]
+    },
+    {
+      "title": "產線作業員 (產學合作)",
+      "subtitle": "宏達國際電子 (HTC) | 2011.08 - 2015.12",
+      "bullets": [
+        "累積逾四年科技廠製造業實務經驗，熟悉並落實標準作業程序（SOP）、品質管理。",
+        "建立嚴格遵守廠區工安規範與穩定完成工作的習慣。"
+      ]
+    }
+  ],
+  "about": [
+    "我的人生歷程並非一路按照原定規劃前進。2015年底因家庭因素離開宏達國際電子，調整原有的學業與職涯規劃，將重心放在家庭照護與工作之間的平衡。這段經歷雖然讓我的發展方向與一般人有所不同，但也讓我更早體會責任的重要性，並學習在不同環境中持續尋找未來的方向。",
+    "我在學生時期透過產學合作進入宏達國際電子（HTC）擔任作業員，自 2011 年 8 月至 2015 年 12 月累積超過四年的製造業工作經驗。在工作中學習標準作業程序（SOP）、品質管理及團隊合作的重要性，也建立遵守規範與穩定完成工作的習慣。",
+    "後續因家庭照護需求，在兼顧家庭責任期間曾透過人力派遣公司進入電子產業工作，參與產品組裝、品質檢驗及產線相關作業，持續累積製造業現場實務經驗。雖然工作型態以派遣為主，但也讓我學習配合產線需求及快速適應不同工作環境。為兼顧家庭照護需求與工作彈性，後續先從事個體配送工作，之後投入外送平台服務作為主要收入來源。長期自主工作的過程中，培養出時間管理、自我管理及問題處理能力。",
+    "在家庭照護期間，我始終沒有放棄進修與學習。為提升未來職涯發展機會，我重返校園取得龍華科技大學電子工程學士學位，並參加數位辦公與 AI 應用培訓班，精進各項文書軟體與數位工具應用。期望能將過去累積的實務經驗與責任心，投入工程行政與助理相關職務，為團隊帶來穩定的支援與貢獻。"
+  ],
+  "certs": [
+    {
+      "img": "images/MOS-EXCEL.jpg",
+      "title": "Microsoft Excel Expert",
+      "subtitle": "Microsoft 365 Apps (專家級)"
+    },
+    {
+      "img": "images/MOS-WORD.jpg",
+      "title": "Microsoft Word Expert",
+      "subtitle": "Microsoft 365 Apps (專家級)"
+    },
+    {
+      "img": "images/MOS-PowerPoint.jpg",
+      "title": "Microsoft PowerPoint",
+      "subtitle": "Microsoft 365 Apps"
+    },
+    {
+      "img": "images/Gemini 認證大學生.jpg",
+      "title": "Gemini University Certification",
+      "subtitle": "Google 認證大學生"
+    },
+    {
+      "img": "images/Gemini 認證教師.jpg",
+      "title": "Gemini Certification Educator",
+      "subtitle": "Google 認證教師"
+    },
+    {
+      "img": "images/Gemini 認證教職員.jpg",
+      "title": "Gemini Certification Faculty",
+      "subtitle": "Google 認證教職員"
+    },
+    {
+      "img": "images/Safety_Cert.jpg",
+      "title": "營造業甲種職業安全衛生<br>業務主管",
+      "subtitle": "安衛管理與合規能力"
+    },
+    {
+      "img": "images/electronics_full.jpg",
+      "title": "工業電子 丙級",
+      "subtitle": "電子工程基礎技術"
+    }
+  ],
+  "projects": [
+    {
+      "title": "1. 跨平台 MOS 自動化模擬考場系統",
+      "subtitle": "個人實作專案 | React 18, TypeScript, Node.js, Prompt Engineering",
+      "link": "",
+      "bullets": [
+        "專案目標：突破傳統紙本題庫限制，自主開發實境模擬系統以高效準備 MOS 專家級認證。",
+        "解決方案：運用 AI 輔助開發，僅花費 5 天即完成跨平台 (Web/Electron) 環境偵測與自動化佈署 MVP，成功繞過瀏覽器沙盒限制。",
+        "產出成果：成功應用此工具輔助自身高分獲證，體現「定義問題、尋求技術資源、快速落地」的問題解決能力。"
+      ]
+    },
+    {
+      "title": "2. 資訊整合導覽平台 (健康資訊 / 防災準備)",
+      "subtitle": "AI 培訓實作專案 | Google AI Studio, Gemini API, Power BI, UI/UX",
+      "link": "",
+      "bullets": [
+        "專案內容：於數位辦公培訓期間，參與規劃並實作「健康資訊導覽平台」與「防災生活與居家準備資訊平台」。",
+        "執行細節：運用生成式 AI 進行資料蒐集、內容重構與提示詞 (Prompt) 設計，將龐雜的公共資訊轉化為易讀的視覺化介面。",
+        "核心貢獻：負責從需求規劃、內容整理、功能測試到成果展示的流程，展現數位專案管理與資訊處理的綜合能力。"
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 升級 key 避免讀取到舊的資料庫緩存，確保載入新圖片！
+    const dataScript = document.getElementById('resume-data');
+    window.resumeData = JSON.parse(localStorage.getItem('my_resume_data_v2')) || JSON.parse(dataScript.textContent);
+    window.isEditing = false;
+
+    // --- 渲染核心引擎 ---
+    window.renderApp = () => {
+        const app = document.getElementById('app');
+        app.innerHTML = `
+            <header>
+                ${renderHeader()}
+            </header>
+            <main>
+                <section id="skills">
+                    <h2>電腦技能</h2>
+                    ${renderSkills()}
+                </section>
+                <section id="experience">
+                    <h2>學歷與工作經歷</h2>
+                    ${renderExperience()}
+                </section>
+                <section id="about">
+                    <h2>個人自傳</h2>
+                    ${renderAbout()}
+                </section>
+                <section id="certs">
+                    <h2>專業證照展示</h2>
+                    ${isEditing ? `<div style="background:#e8f4f8; padding:15px; border-radius:8px; margin-bottom:20px; font-size:0.95rem; color:#0056b3; border: 1px solid #b8daff;">💡 提示：若有圖片破圖，請確保輸入了正確的英文檔名路徑（例如 <code>images/electronics_full.jpg</code> 或 <code>.png</code>）。</div>` : ''}
+                    ${renderCerts()}
+                </section>
+                <section id="works">
+                    <h2>數位專案與實作</h2>
+                    ${renderProjects()}
+                </section>
+            </main>
+        `;
+        renderControls();
+    };
+
+    // --- 各區塊渲染邏輯 ---
+    function renderHeader() {
+        if (isEditing) {
+            return `
+                <div class="edit-block">
+                    <label class="edit-label">姓名：</label>
+                    <input class="edit-input" id="edit-name" value="${resumeData.basics.name}">
+                    <label class="edit-label">應徵職務/標語：</label>
+                    <input class="edit-input" id="edit-job" value="${resumeData.basics.jobTitle}">
+                    <label class="edit-label">地址：</label>
+                    <input class="edit-input" id="edit-loc" value="${resumeData.basics.location}">
+                    <label class="edit-label">電話：</label>
+                    <input class="edit-input" id="edit-phone" value="${resumeData.basics.phone}">
+                    <label class="edit-label">Email：</label>
+                    <input class="edit-input" id="edit-email" value="${resumeData.basics.email}">
+                </div>
+            `;
+        }
+        return `
+            <h1>${resumeData.basics.name}</h1>
+            <p class="tagline">${resumeData.basics.jobTitle}</p>
+            <div class="contact-info">
+                <span>📍 ${resumeData.basics.location}</span>
+                <span>📱 ${resumeData.basics.phone}</span>
+                <span>✉️ ${resumeData.basics.email}</span>
+            </div>
+        `;
+    }
+
+    function renderSkills() {
+        if (isEditing) {
+            let html = `<div class="card">`;
+            resumeData.skills.forEach((s, i) => {
+                html += `
+                    <div style="display:flex; gap:10px; margin-bottom:10px;">
+                        <textarea class="edit-textarea edit-skill" rows="2">${s}</textarea>
+                        <button class="action-btn btn-danger" onclick="removeSkill(${i})">❌</button>
+                    </div>`;
+            });
+            html += `<button class="action-btn" onclick="addSkill()">➕ 新增一項技能</button></div>`;
+            return html;
+        }
+        return `<div class="card"><ul class="feature-list">${resumeData.skills.map(s => `<li>${s}</li>`).join('')}</ul></div>`;
+    }
+
+    function renderExperience() {
+        if (isEditing) {
+            let html = `<div class="card">`;
+            resumeData.experience.forEach((exp, i) => {
+                html += `
+                    <div class="edit-block exp-block">
+                        <label class="edit-label">經歷標題：</label>
+                        <input class="edit-input" id="exp-title-${i}" value="${exp.title}">
+                        <label class="edit-label">時間/公司/副標題：</label>
+                        <input class="edit-input" id="exp-sub-${i}" value="${exp.subtitle}">
+                        <label class="edit-label">具體工作內容：</label>
+                        ${exp.bullets.map((b, j) => `
+                            <div style="display:flex; gap:10px; margin-bottom:5px;">
+                                <textarea class="edit-textarea edit-exp-bullet-${i}" rows="1">${b}</textarea>
+                                <button class="action-btn btn-danger" onclick="removeExpBullet(${i}, ${j})">❌</button>
+                            </div>
+                        `).join('')}
+                        <button class="action-btn" style="margin-top:5px; font-size:0.8rem;" onclick="addExpBullet(${i})">➕ 增加工作內容</button>
+                        <div style="text-align:right; margin-top:10px;">
+                            <button class="action-btn btn-danger" onclick="removeExp(${i})">🗑️ 刪除此項經歷</button>
+                        </div>
+                    </div>`;
+            });
+            html += `<button class="action-btn" onclick="addExp()">➕ 新增一段經歷</button></div>`;
+            return html;
+        }
+        let html = `<div class="card">`;
+        resumeData.experience.forEach(exp => {
+            html += `
+                <div class="timeline-item">
+                    <div class="timeline-title">${exp.title}</div>
+                    <div class="timeline-subtitle">${exp.subtitle}</div>
+                    ${exp.bullets.length > 0 ? `<ul class="feature-list" style="margin-top:5px;">${exp.bullets.map(b => `<li>${b}</li>`).join('')}</ul>` : ''}
+                </div>`;
+        });
+        html += `</div>`;
+        return html;
+    }
+
+    function renderAbout() {
+        if (isEditing) {
+            let html = `<div class="card">`;
+            resumeData.about.forEach((p, i) => {
+                html += `
+                    <div style="display:flex; gap:10px; margin-bottom:10px;">
+                        <textarea class="edit-textarea edit-about" rows="4">${p}</textarea>
+                        <button class="action-btn btn-danger" onclick="removeAbout(${i})">❌</button>
+                    </div>`;
+            });
+            html += `<button class="action-btn" onclick="addAbout()">➕ 新增一個段落</button></div>`;
+            return html;
+        }
+        return `<div class="card">${resumeData.about.map(p => `<p class="about-text">${p}</p>`).join('')}</div>`;
+    }
+
+    function renderCerts() {
+        if (isEditing) {
+            let html = `<div class="card">`;
+            resumeData.certs.forEach((c, i) => {
+                html += `
+                    <div class="edit-block cert-block">
+                        <label class="edit-label">圖片路徑 (預設在 images/ 資料夾下)：</label>
+                        <input class="edit-input" id="cert-img-${i}" value="${c.img}">
+                        <label class="edit-label">證照名稱 (若要換行可輸入 &lt;br&gt;)：</label>
+                        <input class="edit-input" id="cert-title-${i}" value="${c.title}">
+                        <label class="edit-label">副標題/發照單位：</label>
+                        <input class="edit-input" id="cert-sub-${i}" value="${c.subtitle}">
+                        <div style="text-align:right;">
+                            <button class="action-btn btn-danger" onclick="removeCert(${i})">🗑️ 刪除此證照</button>
+                        </div>
+                    </div>`;
+            });
+            html += `<button class="action-btn" onclick="addCert()">➕ 新增證照</button></div>`;
+            return html;
+        }
+        return `
+            <div class="card">
+                <div class="img-grid">
+                    ${resumeData.certs.map(c => `
+                        <div class="cert-item">
+                            <img src="${c.img}" alt="${c.title.replace(/<[^>]*>?/gm, '')}" onerror="this.src='https://placehold.co/400x300/f3efe9/c5a075?text=Image+Not+Found'">
+                            <div class="cert-name">${c.title}<span>${c.subtitle}</span></div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>`;
+    }
+
+    function renderProjects() {
+        if (isEditing) {
+            let html = `<div class="card">`;
+            resumeData.projects.forEach((proj, i) => {
+                html += `
+                    <div class="edit-block proj-block">
+                        <label class="edit-label">專案標題：</label>
+                        <input class="edit-input" id="proj-title-${i}" value="${proj.title}">
+                        <label class="edit-label">副標題/使用技術：</label>
+                        <input class="edit-input" id="proj-sub-${i}" value="${proj.subtitle}">
+                        <label class="edit-label">🌐 網頁/專案連結 (選填)：</label>
+                        <input type="url" class="edit-input" id="proj-link-${i}" placeholder="https://..." value="${proj.link || ''}">
+                        <label class="edit-label">專案描述：</label>
+                        ${proj.bullets.map((b, j) => `
+                            <div style="display:flex; gap:10px; margin-bottom:5px;">
+                                <textarea class="edit-textarea edit-proj-bullet-${i}" rows="2">${b}</textarea>
+                                <button class="action-btn btn-danger" onclick="removeProjBullet(${i}, ${j})">❌</button>
+                            </div>
+                        `).join('')}
+                        <button class="action-btn" style="margin-top:5px; font-size:0.8rem;" onclick="addProjBullet(${i})">➕ 增加專案描述</button>
+                        <div style="text-align:right; margin-top:10px;">
+                            <button class="action-btn btn-danger" onclick="removeProject(${i})">🗑️ 刪除此專案</button>
+                        </div>
+                    </div>`;
+            });
+            html += `<button class="action-btn" onclick="addProject()">➕ 新增專案</button></div>`;
+            return html;
+        }
+        return resumeData.projects.map(proj => `
+            <div class="card">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 5px; flex-wrap: wrap; gap:10px;">
+                    <span class="timeline-title" style="display:block;">${proj.title}</span>
+                    ${proj.link ? `<a href="${proj.link}" target="_blank" class="project-link-btn">🌐 查看作品網頁</a>` : ''}
+                </div>
+                <span class="timeline-subtitle" style="display:block; margin-bottom: 10px;">${proj.subtitle}</span>
+                <ul class="feature-list">
+                    ${proj.bullets.map(b => `<li>${b}</li>`).join('')}
+                </ul>
+            </div>
+        `).join('');
+    }
+
+    function renderControls() {
+        const ctrl = document.getElementById('admin-controls');
+        if (isEditing) {
+            ctrl.style.display = 'flex';
+            ctrl.innerHTML = `
+                <button class="action-btn btn-primary" onclick="saveData()">💾 儲存修改內容</button>
+                <button class="action-btn" onclick="cancelEdit()">✖ 取消</button>
+            `;
+        } else {
+            ctrl.style.display = 'none';
+            ctrl.innerHTML = '';
+        }
+    }
+
+    // --- 資料操作與狀態管理 ---
+    window.startEdit = () => { window.isEditing = true; renderApp(); };
+    window.cancelEdit = () => { 
+        window.resumeData = JSON.parse(localStorage.getItem('my_resume_data_v2')) || JSON.parse(document.getElementById('resume-data').textContent);
+        window.isEditing = false; renderApp(); 
+    };
+    
+    window.saveData = () => {
+        saveStateFromDOM();
+        localStorage.setItem('my_resume_data_v2', JSON.stringify(window.resumeData));
+        window.isEditing = false;
+        renderApp();
+        alert('✅ 儲存成功！\n修改內容已保存在您當前瀏覽器的紀錄中。');
+    };
+
+    function saveStateFromDOM() {
+        if (!isEditing) return;
+        resumeData.basics = {
+            name: document.getElementById('edit-name').value,
+            jobTitle: document.getElementById('edit-job').value,
+            location: document.getElementById('edit-loc').value,
+            phone: document.getElementById('edit-phone').value,
+            email: document.getElementById('edit-email').value
+        };
+        resumeData.skills = Array.from(document.querySelectorAll('.edit-skill')).map(el => el.value).filter(v => v.trim() !== "");
+        
+        resumeData.experience = Array.from(document.querySelectorAll('.exp-block')).map((_, i) => ({
+            title: document.getElementById(`exp-title-${i}`).value,
+            subtitle: document.getElementById(`exp-sub-${i}`).value,
+            bullets: Array.from(document.querySelectorAll(`.edit-exp-bullet-${i}`)).map(el => el.value).filter(v => v.trim() !== "")
+        }));
+        
+        resumeData.about = Array.from(document.querySelectorAll('.edit-about')).map(el => el.value).filter(v => v.trim() !== "");
+        
+        resumeData.certs = Array.from(document.querySelectorAll('.cert-block')).map((_, i) => ({
+            img: document.getElementById(`cert-img-${i}`).value,
+            title: document.getElementById(`cert-title-${i}`).value,
+            subtitle: document.getElementById(`cert-sub-${i}`).value
+        }));
+        
+        resumeData.projects = Array.from(document.querySelectorAll('.proj-block')).map((_, i) => ({
+            title: document.getElementById(`proj-title-${i}`).value,
+            subtitle: document.getElementById(`proj-sub-${i}`).value,
+            link: document.getElementById(`proj-link-${i}`).value,
+            bullets: Array.from(document.querySelectorAll(`.edit-proj-bullet-${i}`)).map(el => el.value).filter(v => v.trim() !== "")
+        }));
+    }
+
+    // 各區塊的增刪按鈕 (觸發前會先保存當前輸入的狀態，避免資料遺失)
+    window.addSkill = () => { saveStateFromDOM(); resumeData.skills.push(""); renderApp(); };
+    window.removeSkill = (i) => { saveStateFromDOM(); resumeData.skills.splice(i, 1); renderApp(); };
+    
+    window.addExp = () => { saveStateFromDOM(); resumeData.experience.push({title:"", subtitle:"", bullets:[]}); renderApp(); };
+    window.removeExp = (i) => { if(confirm("確定刪除此經歷？")) { saveStateFromDOM(); resumeData.experience.splice(i, 1); renderApp(); } };
+    window.addExpBullet = (i) => { saveStateFromDOM(); resumeData.experience[i].bullets.push(""); renderApp(); };
+    window.removeExpBullet = (i, j) => { saveStateFromDOM(); resumeData.experience[i].bullets.splice(j, 1); renderApp(); };
+
+    window.addAbout = () => { saveStateFromDOM(); resumeData.about.push(""); renderApp(); };
+    window.removeAbout = (i) => { saveStateFromDOM(); resumeData.about.splice(i, 1); renderApp(); };
+
+    window.addCert = () => { saveStateFromDOM(); resumeData.certs.push({img:"", title:"新證照", subtitle:""}); renderApp(); };
+    window.removeCert = (i) => { if(confirm("確定刪除此證照？")) { saveStateFromDOM(); resumeData.certs.splice(i, 1); renderApp(); } };
+
+    window.addProject = () => { saveStateFromDOM(); resumeData.projects.push({title:"新專案", subtitle:"", link:"", bullets:[]}); renderApp(); };
+    window.removeProject = (i) => { if(confirm("確定刪除此專案？")) { saveStateFromDOM(); resumeData.projects.splice(i, 1); renderApp(); } };
+    window.addProjBullet = (i) => { saveStateFromDOM(); resumeData.projects[i].bullets.push(""); renderApp(); };
+    window.removeProjBullet = (i, j) => { saveStateFromDOM(); resumeData.projects[i].bullets.splice(j, 1); renderApp(); };
+
+    // 初始化渲染
+    renderApp();
+});
+</script>
+
+</body>
+</html>
